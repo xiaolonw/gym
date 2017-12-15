@@ -8,7 +8,8 @@ class HalfCheetahEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         utils.EzPickle.__init__(self)
 
     def _step(self, action):
-        xposbefore = self.model.data.qpos[0,0]
+        # xposbefore = self.model.data.qpos[0,0]
+        xposbefore = self.sim.data.qpos[0]
         self.do_simulation(action, self.frame_skip)
         xposafter = self.model.data.qpos[0,0]
         ob = self._get_obs()

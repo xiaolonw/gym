@@ -16,7 +16,8 @@ class InvertedDoublePendulumEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         v1, v2 = self.model.data.qvel[1:3]
         vel_penalty = 1e-3 * v1**2 + 5e-3 * v2**2
         alive_bonus = 10
-        r = (alive_bonus - dist_penalty - vel_penalty)[0]
+        # r = (alive_bonus - dist_penalty - vel_penalty)[0]
+        r = alive_bonus - dist_penalty - vel_penalty
         done = bool(y <= 1)
         return ob, r, done, {}
 
